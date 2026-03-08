@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export', // voor GitHub Pages: statische export naar out/
   typescript: {
     ignoreBuildErrors: true,
   },

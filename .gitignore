@@ -5,6 +5,7 @@ __v0_jsx-dev-runtime.ts
 
 # build output
 dist/
+out/
 
 # generated types
 .astro/
