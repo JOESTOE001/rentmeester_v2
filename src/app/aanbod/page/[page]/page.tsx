@@ -1,20 +1,11 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { ContentBlockImageLeft } from "@/components/content-block-image-left"
 import { TOTAL_PAGES } from "@/data/aanbod"
-import {
-  getAanbodPage,
-  type AanbodItem,
-  type AanbodStatus,
-} from "@/lib/aanbod"
-
-export const metadata: Metadata = {
-  title: "Aanbod | Bakker Rentmeesters & Makelaars",
-  description:
-    "Actueel aanbod landelijk vastgoed: woonboerderijen, bospercelen, bouwgrond en agrarisch vastgoed.",
-}
+import { getAanbodPage, type AanbodItem, type AanbodStatus } from "@/lib/aanbod"
 
 const statusLabels: Record<AanbodStatus, string> = {
   "te-koop": "",
@@ -40,8 +31,8 @@ function AanbodCard({ item }: { item: AanbodItem }) {
   )
 }
 
-function aanbodPaginationHref(page: number): string {
-  return page === 1 ? "/aanbod" : `/aanbod/page/${page}`
+function aanbodPaginationHref(p: number): string {
+  return p === 1 ? "/aanbod" : `/aanbod/page/${p}`
 }
 
 function Pagination({
@@ -61,17 +52,17 @@ function Pagination({
         Pagina {currentPage} van {totalPages}
       </span>
       <div className="flex gap-1">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
           <Link
-            key={page}
-            href={aanbodPaginationHref(page)}
+            key={p}
+            href={aanbodPaginationHref(p)}
             className={`flex h-10 w-10 items-center justify-center rounded-lg text-sm font-medium transition-colors ${
-              page === currentPage
+              p === currentPage
                 ? "bg-accent text-accent-foreground"
                 : "bg-muted text-muted-foreground hover:bg-secondary hover:text-foreground"
             }`}
           >
-            {page}
+            {p}
           </Link>
         ))}
       </div>
@@ -79,9 +70,36 @@ function Pagination({
   )
 }
 
-export default async function AanbodPage() {
-  const page = 1
-  const items = await getAanbodPage(page)
+export function generateStaticParams() {
+  return Array.from({ length: TOTAL_PAGES - 1 }, (_, i) => ({
+    page: String(i + 2),
+  }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ page: string }>
+}): Promise<Metadata> {
+  const { page } = await params
+  const n = Number(page)
+  if (n < 2 || n > TOTAL_PAGES) return { title: "Niet gevonden" }
+  return {
+    title: `Aanbod – pagina ${n} | Bakker Rentmeesters & Makelaars`,
+    description:
+      "Actueel aanbod landelijk vastgoed: woonboerderijen, bospercelen, bouwgrond en agrarisch vastgoed.",
+  }
+}
+
+export default async function AanbodPagePage({
+  params,
+}: {
+  params: Promise<{ page: string }>
+}) {
+  const { page } = await params
+  const pageNum = Number(page)
+  if (pageNum < 2 || pageNum > TOTAL_PAGES) notFound()
+  const items = await getAanbodPage(pageNum)
 
   return (
     <main className="min-h-screen bg-background">
@@ -104,7 +122,7 @@ export default async function AanbodPage() {
             ))}
           </ul>
 
-          <Pagination currentPage={page} totalPages={TOTAL_PAGES} />
+          <Pagination currentPage={pageNum} totalPages={TOTAL_PAGES} />
         </div>
       </div>
       <Footer />

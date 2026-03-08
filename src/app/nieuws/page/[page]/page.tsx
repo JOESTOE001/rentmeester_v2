@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import {
@@ -7,12 +8,6 @@ import {
   NIEUWS_TOTAL_PAGES,
   type NieuwsItem,
 } from "@/data/nieuws"
-
-export const metadata: Metadata = {
-  title: "Nieuws | Bakker Rentmeesters & Makelaars",
-  description:
-    "Actueel nieuws en berichten van Bakker Rentmeesters over grondzaken, landelijk vastgoed en de rentmeesterspraktijk.",
-}
 
 function NieuwsCard({ item }: { item: NieuwsItem }) {
   return (
@@ -37,8 +32,8 @@ function NieuwsCard({ item }: { item: NieuwsItem }) {
   )
 }
 
-function paginationHref(page: number): string {
-  return page === 1 ? "/nieuws" : `/nieuws/page/${page}`
+function paginationHref(p: number): string {
+  return p === 1 ? "/nieuws" : `/nieuws/page/${p}`
 }
 
 function Pagination({
@@ -58,17 +53,17 @@ function Pagination({
         Pagina {currentPage} van {totalPages}
       </span>
       <div className="flex gap-1">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
           <Link
-            key={page}
-            href={paginationHref(page)}
+            key={p}
+            href={paginationHref(p)}
             className={`flex h-10 w-10 items-center justify-center rounded-lg text-sm font-medium transition-colors ${
-              page === currentPage
+              p === currentPage
                 ? "bg-accent text-accent-foreground"
                 : "bg-muted text-muted-foreground hover:bg-secondary hover:text-foreground"
             }`}
           >
-            {page}
+            {p}
           </Link>
         ))}
       </div>
@@ -76,9 +71,36 @@ function Pagination({
   )
 }
 
-export default function NieuwsPage() {
-  const page = 1
-  const items = getNieuwsPage(page)
+export function generateStaticParams() {
+  return Array.from({ length: NIEUWS_TOTAL_PAGES - 1 }, (_, i) => ({
+    page: String(i + 2),
+  }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ page: string }>
+}): Promise<Metadata> {
+  const { page } = await params
+  const n = Number(page)
+  if (n < 2 || n > NIEUWS_TOTAL_PAGES) return { title: "Niet gevonden" }
+  return {
+    title: `Nieuws – pagina ${n} | Bakker Rentmeesters & Makelaars`,
+    description:
+      "Actueel nieuws en berichten van Bakker Rentmeesters over grondzaken, landelijk vastgoed en de rentmeesterspraktijk.",
+  }
+}
+
+export default async function NieuwsPagePage({
+  params,
+}: {
+  params: Promise<{ page: string }>
+}) {
+  const { page } = await params
+  const pageNum = Number(page)
+  if (pageNum < 2 || pageNum > NIEUWS_TOTAL_PAGES) notFound()
+  const items = getNieuwsPage(pageNum)
 
   return (
     <main className="min-h-screen bg-background">
@@ -101,7 +123,7 @@ export default function NieuwsPage() {
           </ul>
 
           <Pagination
-            currentPage={page}
+            currentPage={pageNum}
             totalPages={NIEUWS_TOTAL_PAGES}
           />
         </div>

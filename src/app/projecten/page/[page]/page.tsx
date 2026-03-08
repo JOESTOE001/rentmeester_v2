@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { ContentBlockImageLeft } from "@/components/content-block-image-left"
@@ -10,15 +11,8 @@ import {
 } from "@/data/projecten"
 import projectenImages from "@/data/projecten-images.json"
 
-export const metadata: Metadata = {
-  title: "Projecten | Bakker Rentmeesters & Makelaars",
-  description:
-    "Overzicht van projecten waarbij Bakker Rentmeesters betrokken is: grondverwerving, dijkversterking, warmtenetten, zonneparken en meer.",
-}
-
 const PLACEHOLDER_IMAGE = "/placeholder.svg"
 
-/** Afbeelding voor een project: uit projecten-images.json (scrape) of placeholder. */
 function getProjectImage(project: ProjectItem): string {
   const path =
     project.image ??
@@ -40,8 +34,8 @@ function ProjectCard({ project }: { project: ProjectItem }) {
   )
 }
 
-function projectenPaginationHref(page: number): string {
-  return page === 1 ? "/projecten" : `/projecten/page/${page}`
+function projectenPaginationHref(p: number): string {
+  return p === 1 ? "/projecten" : `/projecten/page/${p}`
 }
 
 function Pagination({
@@ -61,17 +55,17 @@ function Pagination({
         Pagina {currentPage} van {totalPages}
       </span>
       <div className="flex gap-1">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
           <Link
-            key={page}
-            href={projectenPaginationHref(page)}
+            key={p}
+            href={projectenPaginationHref(p)}
             className={`flex h-10 w-10 items-center justify-center rounded-lg text-sm font-medium transition-colors ${
-              page === currentPage
+              p === currentPage
                 ? "bg-accent text-accent-foreground"
                 : "bg-muted text-muted-foreground hover:bg-secondary hover:text-foreground"
             }`}
           >
-            {page}
+            {p}
           </Link>
         ))}
       </div>
@@ -79,9 +73,36 @@ function Pagination({
   )
 }
 
-export default function ProjectenPage() {
-  const page = 1
-  const items = getProjectenPage(page)
+export function generateStaticParams() {
+  return Array.from({ length: Math.max(0, PROJECTEN_TOTAL_PAGES - 1) }, (_, i) => ({
+    page: String(i + 2),
+  }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ page: string }>
+}): Promise<Metadata> {
+  const { page } = await params
+  const n = Number(page)
+  if (n < 2 || n > PROJECTEN_TOTAL_PAGES) return { title: "Niet gevonden" }
+  return {
+    title: `Projecten – pagina ${n} | Bakker Rentmeesters & Makelaars`,
+    description:
+      "Overzicht van projecten waarbij Bakker Rentmeesters betrokken is: grondverwerving, dijkversterking, warmtenetten, zonneparken en meer.",
+  }
+}
+
+export default async function ProjectenPagePage({
+  params,
+}: {
+  params: Promise<{ page: string }>
+}) {
+  const { page } = await params
+  const pageNum = Number(page)
+  if (pageNum < 2 || pageNum > PROJECTEN_TOTAL_PAGES) notFound()
+  const items = getProjectenPage(pageNum)
 
   return (
     <main className="min-h-screen bg-background">
@@ -105,7 +126,7 @@ export default function ProjectenPage() {
           </ul>
 
           <Pagination
-            currentPage={page}
+            currentPage={pageNum}
             totalPages={PROJECTEN_TOTAL_PAGES}
           />
         </div>
