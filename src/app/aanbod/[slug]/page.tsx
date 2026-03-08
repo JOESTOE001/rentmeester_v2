@@ -6,7 +6,13 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { MarkdownBody } from "@/components/markdown-body"
 import { getAanbodBySlug, type AanbodStatus } from "@/lib/aanbod"
+import { aanbodIndex } from "@/data/aanbod"
 import { ArrowLeft } from "lucide-react"
+
+/** Vereist voor output: 'export' (GitHub Pages): alle slugs vooraf genereren. */
+export function generateStaticParams() {
+  return aanbodIndex.map((item) => ({ slug: item.slug }))
+}
 
 const statusLabelsMap: Record<AanbodStatus, string> = {
   "te-koop": "",
