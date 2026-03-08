@@ -43,3 +43,7 @@ Website voor het tonen en beheren van vastgoedaanbod (percelen, bouwkavels, woni
 2. `npm install`
 3. `npm run dev`
 4. Open [http://localhost:3000](http://localhost:3000).
+
+## Deploy op de server
+
+Zodat de live site overeenkomt met lokaal: bouw en start **altijd vanuit de projectroot** en deploy de **volledige** projectmap (inclusief `content/`, `data/`, `lib/`). Zie **[DEPLOY.md](./DEPLOY.md)** voor details.
