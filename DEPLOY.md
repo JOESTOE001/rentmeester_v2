@@ -28,6 +28,16 @@ Zorg dat op de server (bijv. `/var/www/rentmeester`) **de volledige projectstruc
 
 Dus: **niet** alleen `.next` + `node_modules` deployen; ook `content/`, `data/`, `lib/` en de rest van de repo.
 
+**Verwachte boom** (projectroot = bijv. `/var/www/rentmeester`): naast `src/` moeten op hetzelfde niveau staan: `content/`, `content/aanbod/` (met .md), `data/`, `lib/`, `components/`, `hooks/`, `public/`, `scripts/`. De tsconfig heeft `"@/*": ["./*"]`, dus `@/data` = `./data`, `@/lib` = `./lib`, etc.
+
+**Structuur controleren op de server:**
+```bash
+cd /var/www/rentmeester
+chmod +x scripts/verify-deploy-structure.sh
+./scripts/verify-deploy-structure.sh
+```
+Het script meldt "OK" of "ONVOLLEDIG" en wat er ontbreekt.
+
 ## 3. Build-check
 
 Bij `npm run build` wordt gecontroleerd of `content/aanbod/` bestaat en .md-bestanden bevat. Als dat op de server niet zo is, faalt de build. Zo zie je direct dat de content-map ontbreekt of op de verkeerde plek staat.
