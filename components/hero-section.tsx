@@ -16,7 +16,7 @@ export function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-landscape.jpg"
+          src="/images/achtergronden/rentmeester_bg.webp"
           alt="Nederlands platteland landschap"
           fill
           className="object-cover"
