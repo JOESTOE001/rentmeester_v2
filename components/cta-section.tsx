@@ -18,7 +18,7 @@ export function CtaSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 text-center lg:px-8">
         <h2 className="mx-auto max-w-2xl font-serif text-3xl font-bold text-card lg:text-5xl text-balance">
-          Klaar om de volgende stap te zetten?
+          Kom in contact
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-card/80 lg:text-lg">
           Of het nu gaat om advies, begeleiding bij grondverwerving of een
