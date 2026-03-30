@@ -49,7 +49,7 @@ export function HeroSection() {
           >
             <span className="text-balance block">
               Uw specialist in{" "}
-              <span className="text-accent italic">landelijk</span>{" "}
+              <span className="italic text-[oklch(0.94_0.1_78)]">landelijk</span>{" "}
               vastgoed
             </span>
           </h1>
