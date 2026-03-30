@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react"
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react"
 
+const referentiesAchtergrond = "/images/achtergronden/review.png"
+
 const testimonials = [
   {
     name: "Theo Kragt",
@@ -48,8 +50,18 @@ export function TestimonialsSection() {
   const next = () => setActive((a) => (a === testimonials.length - 1 ? 0 : a + 1))
 
   return (
-    <section id="referenties" ref={ref} className="bg-warm-bg py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section
+      id="referenties"
+      ref={ref}
+      className="relative isolate overflow-hidden py-24 lg:py-32"
+    >
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${referentiesAchtergrond})` }}
+      />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-warm-bg/40" />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div
           className={`mx-auto max-w-2xl text-center transition-all duration-1000 ${

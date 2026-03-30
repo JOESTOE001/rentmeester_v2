@@ -138,3 +138,23 @@ export function getServiceBySlug(slug: string): AdviesService | VerkoopService |
 export function getAllServiceSlugs(): string[] {
   return [...allServicesBySlug.keys()]
 }
+
+/** Publieke URL vanaf `/public` voor de fotobalk op `/diensten/[slug]`. */
+const servicePageImages: Record<string, string> = {
+  "wet-en-regelgeving": "/images/achtergronden/wet_regelgeving.jpg",
+  landgoederen: "/images/achtergronden/landgoed.webp",
+  "ruimtelijke-ordening": "/images/achtergronden/ruimtelijke_ordening.jpg",
+  "beheer-landelijk-vastgoed": "/images/rural-property.jpg",
+  "vestiging-zakelijk-recht": "/images/estate-aerial.jpg",
+  "pacht-erfpacht": "/images/achtergronden/pacht.webp",
+  "landelijk-wonen": "/images/achtergronden/zuid_holland.jpg",
+  "agrarisch-vastgoed": "/images/estate-aerial.jpg",
+  taxaties: "/images/hero-landscape.jpg",
+  "planschade-nadeelcompensatie": "/images/achtergronden/friesland.jpg",
+  onteigening: "/images/achtergronden/utrecht.jpg",
+  grondverwerving: "/images/achtergronden/grondverwerving.png",
+}
+
+export function getServicePageImageSrc(slug: string): string {
+  return servicePageImages[slug] ?? "/images/achtergronden/header_home.webp"
+}
