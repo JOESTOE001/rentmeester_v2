@@ -29,7 +29,7 @@ export async function generateMetadata({
   const item = await getAanbodBySlug(slug)
   if (!item) return { title: "Niet gevonden" }
   return {
-    title: `${item.title} | Aanbod | Bakker Rentmeesters & Makelaars`,
+    title: `${item.title} | Aanbod | Bakker Rentmeesters`,
     description: item.excerpt || undefined,
   }
 }
@@ -48,7 +48,7 @@ export default async function AanbodDetailPage({
   const PLACEHOLDER_IMAGE = "/placeholder.svg"
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-transparent">
       <Navigation />
       <div className="pt-24 pb-16">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">

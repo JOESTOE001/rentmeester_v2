@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer"
 import { linksCategorieen } from "@/data/links"
 
 export const metadata: Metadata = {
-  title: "Links | Bakker Rentmeesters & Makelaars",
+  title: "Links | Bakker Rentmeesters",
   description:
     "Handige links: beroepsorganisaties, overheden, kastelen en landgoederen, agrarisch nieuws en vraag en aanbod.",
 }

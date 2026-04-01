@@ -8,7 +8,7 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
-  title: 'Bakker Rentmeesters & Makelaars',
+  title: 'Bakker Rentmeesters',
   description: 'Specialist op het gebied van landelijk gelegen vastgoed. Meer dan 30 jaar ervaring als rentmeester in Nederland.',
   generator: 'v0.app',
   icons: {

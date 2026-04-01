@@ -29,7 +29,7 @@ export function ContentBlockImageLeft({
   extra,
 }: ContentBlockImageLeftProps) {
   return (
-    <section className="relative overflow-hidden rounded-xl bg-warm-bg/60 py-8 px-6 lg:px-10 lg:py-10">
+    <section className="relative overflow-hidden rounded-xl border border-border bg-card py-8 px-6 shadow-sm lg:px-10 lg:py-10">
       {/* Optionele subtiele textuur-achtergrond kan hier via bg-image */}
       <div className="relative grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12 items-center">
         {/* Links: afbeelding */}

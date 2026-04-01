@@ -86,7 +86,7 @@ export async function generateMetadata({
   const n = Number(page)
   if (n < 2 || n > NIEUWS_TOTAL_PAGES) return { title: "Niet gevonden" }
   return {
-    title: `Nieuws – pagina ${n} | Bakker Rentmeesters & Makelaars`,
+    title: `Nieuws – pagina ${n} | Bakker Rentmeesters`,
     description:
       "Actueel nieuws en berichten van Bakker Rentmeesters over grondzaken, landelijk vastgoed en de rentmeesterspraktijk.",
   }

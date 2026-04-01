@@ -83,7 +83,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-primary-foreground/10 pt-8 sm:flex-row">
           <p className="text-xs text-primary-foreground/50">
-            &copy; {new Date().getFullYear()} Bakker Rentmeesters & Makelaars B.V.
+            &copy; {new Date().getFullYear()} Bakker Rentmeesters B.V.
             Alle rechten voorbehouden.
           </p>
           <div className="flex gap-6">

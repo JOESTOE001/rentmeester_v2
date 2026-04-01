@@ -9,7 +9,7 @@ import {
 } from "@/data/nieuws"
 
 export const metadata: Metadata = {
-  title: "Nieuws | Bakker Rentmeesters & Makelaars",
+  title: "Nieuws | Bakker Rentmeesters",
   description:
     "Actueel nieuws en berichten van Bakker Rentmeesters over grondzaken, landelijk vastgoed en de rentmeesterspraktijk.",
 }

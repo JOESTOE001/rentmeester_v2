@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps) {
   const service = getServiceBySlug(slug)
   if (!service) return { title: "Dienst niet gevonden" }
   return {
-    title: `${service.title} | Bakker Rentmeesters & Makelaars`,
+    title: `${service.title} | Bakker Rentmeesters`,
     description: service.desc,
   }
 }

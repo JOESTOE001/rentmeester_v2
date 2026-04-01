@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
-  title: "Beroepsgroep | Bakker Rentmeesters & Makelaars",
+  title: "Beroepsgroep | Bakker Rentmeesters",
   description:
     "Over het vak van rentmeester en de werkzaamheden van Bakker Rentmeesters: landelijk vastgoed, taxaties, grondzaken en meer.",
 }

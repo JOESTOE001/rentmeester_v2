@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
-  title: "Over ons | Bakker Rentmeesters & Makelaars",
+  title: "Over ons | Bakker Rentmeesters",
   description:
     "Meer over Bakker Rentmeesters: nieuws, referenties, beroepsgroep en handige links.",
 }

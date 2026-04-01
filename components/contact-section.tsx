@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import Image from "next/image"
+import { MapPin, Phone, Mail } from "lucide-react"
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -17,23 +18,32 @@ export function ContactSection() {
   }, [])
 
   return (
-    <section id="contact" ref={ref} className="bg-card py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="contact" ref={ref} className="relative overflow-hidden py-24 lg:py-32">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/achtergronden/achtergrond.webp"
+          alt=""
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-background/20" aria-hidden />
+      </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div
-          className={`mx-auto max-w-2xl text-center transition-all duration-1000 ${
+          className={`mx-auto text-center transition-all duration-1000 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
           <span className="text-xs font-medium tracking-widest uppercase text-accent">
             Contact
           </span>
-          <h2 className="mt-4 font-serif text-3xl font-bold text-foreground lg:text-5xl text-balance">
+          <h2 className="mx-auto mt-4 max-w-2xl font-serif text-3xl font-bold text-foreground text-balance lg:text-5xl">
             {"Laten we kennismaken"}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground lg:text-lg">
-            Heeft u een vraag of wilt u vrijblijvend overleggen? Neem gerust
-            contact met ons op.
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground lg:text-lg lg:whitespace-nowrap">
+            Heeft u een vraag of wilt u vrijblijvend overleggen? Neem gerust contact met ons op.
           </p>
         </div>
 
@@ -129,7 +139,7 @@ export function ContactSection() {
             {[
               {
                 icon: MapPin,
-                title: "Bezoekadres",
+                title: "Adres",
                 lines: ["Hoekje 14", "4286 LN Almkerk", "Nederland"],
               },
               {
@@ -137,7 +147,7 @@ export function ContactSection() {
                 title: "Telefoon",
                 lines: [
                   <a key="tel" href="tel:0183402088" className="text-accent hover:underline">
-                    0183-402088
+                    0183-402088 / 06-20603272
                   </a>,
                 ],
               },

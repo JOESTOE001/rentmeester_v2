@@ -37,6 +37,7 @@ export function Navigation() {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const isHome = pathname === "/"
+  const solidNavBar = isScrolled || !isHome
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 50)
@@ -47,7 +48,7 @@ export function Navigation() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
+        solidNavBar
           ? "bg-card/95 backdrop-blur-md shadow-sm border-b border-border"
           : "bg-transparent"
       }`}
@@ -57,7 +58,7 @@ export function Navigation() {
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo.svg"
-            alt="Bakker Rentmeesters & Makelaars"
+            alt="Bakker Rentmeesters"
             width={220}
             height={66}
             className="h-10 w-auto object-contain object-left sm:h-12"
@@ -77,7 +78,7 @@ export function Navigation() {
               <Link
                 href={link.href}
                 className={`flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-                  isScrolled || !isHome
+                  solidNavBar
                     ? "text-foreground hover:bg-secondary"
                     : "text-card/90 hover:text-card hover:bg-card/10"
                 }`}
@@ -109,7 +110,7 @@ export function Navigation() {
           <Link
             href="/#contact"
             className={`hidden rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-300 lg:block ${
-              isScrolled || !isHome
+              solidNavBar
                 ? "bg-primary text-primary-foreground hover:bg-primary/90"
                 : "bg-card text-foreground hover:bg-card/90"
             }`}
@@ -119,7 +120,7 @@ export function Navigation() {
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             className={`lg:hidden transition-colors ${
-              isScrolled || !isHome ? "text-foreground" : "text-card"
+              solidNavBar ? "text-foreground" : "text-card"
             }`}
             aria-label={isMobileOpen ? "Menu sluiten" : "Menu openen"}
           >

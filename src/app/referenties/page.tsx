@@ -5,7 +5,7 @@ import { MarkdownBody } from "@/components/markdown-body"
 import { referentiesIndex, type ReferentieItem } from "@/data/referenties"
 
 export const metadata: Metadata = {
-  title: "Referenties | Bakker Rentmeesters & Makelaars",
+  title: "Referenties | Bakker Rentmeesters",
   description:
     "Ervaringen en referenties van opdrachtgevers met Bakker Rentmeesters.",
 }

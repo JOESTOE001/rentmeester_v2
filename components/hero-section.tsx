@@ -60,7 +60,7 @@ export function HeroSection() {
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
-            Bakker Rentmeesters & Makelaars is al meer dan 30 jaar uw
+            Bakker Rentmeesters is al meer dan 30 jaar uw
             vertrouwde partner voor advies, beheer en begeleiding bij
             landelijk gelegen vastgoed in heel Nederland.
           </p>
