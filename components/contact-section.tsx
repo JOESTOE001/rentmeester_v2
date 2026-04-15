@@ -24,7 +24,7 @@ export function ContactSection() {
           src="/images/achtergronden/achtergrond.webp"
           alt=""
           fill
-          className="object-cover object-center"
+          className="object-cover object-center -scale-x-100"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-background/20" aria-hidden />
@@ -42,7 +42,7 @@ export function ContactSection() {
           <h2 className="mx-auto mt-4 max-w-2xl font-serif text-3xl font-bold text-foreground text-balance lg:text-5xl">
             {"Laten we kennismaken"}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground lg:text-lg lg:whitespace-nowrap">
+          <p className="mt-4 text-base leading-relaxed text-black lg:text-lg lg:whitespace-nowrap">
             Heeft u een vraag of wilt u vrijblijvend overleggen? Neem gerust contact met ons op.
           </p>
         </div>
@@ -146,9 +146,13 @@ export function ContactSection() {
                 icon: Phone,
                 title: "Telefoon",
                 lines: [
-                  <a key="tel" href="tel:0183402088" className="text-accent hover:underline">
-                    0183-402088 / 06-20603272
+                  <a key="tel1" href="tel:0183402088" className="text-accent hover:underline">
+                    0183-402088
                   </a>,
+                  <a key="tel2" href="tel:0620603272" className="text-accent hover:underline">
+                    06-20603272
+                  </a>,
+             
                 ],
               },
               {

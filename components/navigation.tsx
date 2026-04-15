@@ -55,13 +55,16 @@ export function Navigation() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
+        <Link
+          href="/"
+          className="flex items-center gap-3 -translate-y-1 sm:-translate-y-1.5"
+        >
           <Image
             src="/logo.svg"
             alt="Bakker Rentmeesters"
             width={220}
             height={66}
-            className="h-10 w-auto object-contain object-left sm:h-12"
+            className="block h-10 w-auto object-contain object-left sm:h-12"
             priority
           />
         </Link>

@@ -5,6 +5,9 @@ import { useState, useEffect } from "react"
 
 const POPUP_KEY = "landeigenaar-popup-dismissed"
 
+const LANDEIGENAAR_URL =
+  "https://landeigenaar.nl/?utm_source=bakker-rentmeesters&utm_medium=popup&utm_campaign=landeigenaar_popup"
+
 export function LandeigenaarPopup() {
   const [isVisible, setIsVisible] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
@@ -30,7 +33,7 @@ export function LandeigenaarPopup() {
 
   return (
     <a
-      href="https://landeigenaar.nl"
+      href={LANDEIGENAAR_URL}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 flex max-w-md gap-5 rounded-xl border border-border bg-card p-5 shadow-lg transition-shadow hover:shadow-xl animate-in slide-in-from-bottom-4 fade-in duration-300"
