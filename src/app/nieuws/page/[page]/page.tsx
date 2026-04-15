@@ -103,16 +103,18 @@ export default async function NieuwsPagePage({
   const items = getNieuwsPage(pageNum)
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-transparent">
       <Navigation />
       <div className="pt-24 pb-16">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <h1 className="font-serif text-4xl font-bold text-foreground">
-            Nieuws
-          </h1>
-          <p className="mt-2 text-muted-foreground">
-            Actueel nieuws en berichten van Bakker Rentmeesters.
-          </p>
+          <div className="rounded-xl border border-border bg-card p-6 shadow-sm lg:p-8">
+            <h1 className="font-serif text-4xl font-bold text-foreground">
+              Nieuws
+            </h1>
+            <p className="mt-2 text-muted-foreground">
+              Actueel nieuws en berichten van Bakker Rentmeesters.
+            </p>
+          </div>
 
           <ul className="mt-10 flex flex-col gap-6 list-none p-0 m-0">
             {items.map((item) => (

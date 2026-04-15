@@ -33,52 +33,54 @@ const slot = `Bakker Rentmeesters is aangesloten bij de Nederlandse Vereniging v
 
 export default function BeroepsgroepPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-transparent">
       <Navigation />
       <div className="pt-24 pb-16">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
-          <h1 className="font-serif text-4xl font-bold text-foreground">
-            Beroepsgroep
-          </h1>
-          <p className="mt-2 text-muted-foreground">
-            Over het vak van rentmeester en onze werkzaamheden.
-          </p>
+          <div className="rounded-xl border border-border bg-card p-6 shadow-sm lg:p-10">
+            <h1 className="font-serif text-4xl font-bold text-foreground">
+              Beroepsgroep
+            </h1>
+            <p className="mt-2 text-muted-foreground">
+              Over het vak van rentmeester en onze werkzaamheden.
+            </p>
 
-          <div className="mt-10 space-y-8 text-foreground">
-            <p className="leading-relaxed">{intro}</p>
+            <div className="mt-10 space-y-8 text-foreground">
+              <p className="leading-relaxed">{intro}</p>
 
-            <section>
-              <h2 className="font-serif text-xl font-semibold text-foreground">
-                Kenmerken van Bakker Rentmeesters
-              </h2>
-              <ul className="mt-3 list-disc space-y-2 pl-5 text-muted-foreground">
-                {kenmerken.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
-            </section>
+              <section>
+                <h2 className="font-serif text-xl font-semibold text-foreground">
+                  Kenmerken van Bakker Rentmeesters
+                </h2>
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-muted-foreground">
+                  {kenmerken.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </section>
 
-            <section>
-              <h2 className="font-serif text-xl font-semibold text-foreground">
-                Enkele werkzaamheden van Bakker Rentmeesters
-              </h2>
-              <ul className="mt-3 list-disc space-y-2 pl-5 text-muted-foreground">
-                {werkzaamheden.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
-            </section>
+              <section>
+                <h2 className="font-serif text-xl font-semibold text-foreground">
+                  Enkele werkzaamheden van Bakker Rentmeesters
+                </h2>
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-muted-foreground">
+                  {werkzaamheden.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </section>
 
-            <p className="leading-relaxed">{slot}</p>
-          </div>
+              <p className="leading-relaxed">{slot}</p>
+            </div>
 
-          <div className="mt-12">
-            <Link
-              href="/#contact"
-              className="inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-            >
-              Neem contact op
-            </Link>
+            <div className="mt-12">
+              <Link
+                href="/#contact"
+                className="inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+              >
+                Neem contact op
+              </Link>
+            </div>
           </div>
         </div>
       </div>

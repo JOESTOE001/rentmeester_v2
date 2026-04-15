@@ -3,8 +3,12 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { MapPin, Phone, Mail } from "lucide-react"
+import { useForm, ValidationError } from "@formspree/react"
+
+const FORMSPREE_FORM_ID = "mvzdzrzb"
 
 export function ContactSection() {
+  const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID)
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLElement>(null)
 
@@ -54,80 +58,126 @@ export function ContactSection() {
               isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
             }`}
           >
-            <form className="flex flex-col gap-6">
-              <div className="grid gap-6 sm:grid-cols-2">
+            {state.succeeded ? (
+              <p className="text-center text-base leading-relaxed text-foreground">
+                Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.
+              </p>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="name" className="text-sm font-medium text-foreground">
+                      Naam
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Uw naam"
+                      className="rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                    />
+                    <ValidationError
+                      prefix="Naam"
+                      field="name"
+                      errors={state.errors}
+                      className="text-sm text-destructive"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="email" className="text-sm font-medium text-foreground">
+                      E-mail
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="uw@email.nl"
+                      className="rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                    />
+                    <ValidationError
+                      prefix="E-mail"
+                      field="email"
+                      errors={state.errors}
+                      className="text-sm text-destructive"
+                    />
+                  </div>
+                </div>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="text-sm font-medium text-foreground">
-                    Naam
+                  <label htmlFor="phone" className="text-sm font-medium text-foreground">
+                    Telefoonnummer
                   </label>
                   <input
-                    id="name"
-                    type="text"
-                    placeholder="Uw naam"
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="+31 6 12345678"
                     className="rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                  />
+                  <ValidationError
+                    prefix="Telefoonnummer"
+                    field="phone"
+                    errors={state.errors}
+                    className="text-sm text-destructive"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="email" className="text-sm font-medium text-foreground">
-                    E-mail
+                  <label htmlFor="subject" className="text-sm font-medium text-foreground">
+                    Onderwerp
                   </label>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="uw@email.nl"
-                    className="rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                  <select
+                    id="subject"
+                    name="subject"
+                    required
+                    className="rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Kies een onderwerp
+                    </option>
+                    <option value="Advies">Advies</option>
+                    <option value="Aan- en verkoop begeleiding">Aan- en verkoop begeleiding</option>
+                    <option value="Taxaties">Taxaties</option>
+                    <option value="Onteigening">Onteigening</option>
+                    <option value="Grondverwerving">Grondverwerving</option>
+                    <option value="Overig">Overig</option>
+                  </select>
+                  <ValidationError
+                    prefix="Onderwerp"
+                    field="subject"
+                    errors={state.errors}
+                    className="text-sm text-destructive"
                   />
                 </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="phone" className="text-sm font-medium text-foreground">
-                  Telefoonnummer
-                </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  placeholder="+31 6 12345678"
-                  className="rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="subject" className="text-sm font-medium text-foreground">
-                  Onderwerp
-                </label>
-                <select
-                  id="subject"
-                  className="rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-                  defaultValue=""
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="message" className="text-sm font-medium text-foreground">
+                    Bericht
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    required
+                    placeholder="Uw bericht..."
+                    className="resize-none rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                  />
+                  <ValidationError
+                    prefix="Bericht"
+                    field="message"
+                    errors={state.errors}
+                    className="text-sm text-destructive"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={state.submitting}
+                  className="self-start rounded-lg bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-60"
                 >
-                  <option value="" disabled>
-                    Kies een onderwerp
-                  </option>
-                  <option>Advies</option>
-                  <option>Aan- en verkoop begeleiding</option>
-                  <option>Taxaties</option>
-                  <option>Onteigening</option>
-                  <option>Grondverwerving</option>
-                  <option>Overig</option>
-                </select>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-sm font-medium text-foreground">
-                  Bericht
-                </label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  placeholder="Uw bericht..."
-                  className="resize-none rounded-lg border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-                />
-              </div>
-              <button
-                type="submit"
-                className="self-start rounded-lg bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-              >
-                Verstuur bericht
-              </button>
-            </form>
+                  {state.submitting ? "Verzenden…" : "Verstuur bericht"}
+                </button>
+              </form>
+            )}
           </div>
 
           {/* Contact Info */}

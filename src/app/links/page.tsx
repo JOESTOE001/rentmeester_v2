@@ -11,16 +11,18 @@ export const metadata: Metadata = {
 
 export default function LinksPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-transparent">
       <Navigation />
       <div className="pt-24 pb-16">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <h1 className="font-serif text-4xl font-bold text-foreground">
-            Links
-          </h1>
-          <p className="mt-2 text-muted-foreground">
-            Beroepsgerelateerde en andere handige links.
-          </p>
+          <div className="rounded-xl border border-border bg-card p-6 shadow-sm lg:p-8">
+            <h1 className="font-serif text-4xl font-bold text-foreground">
+              Links
+            </h1>
+            <p className="mt-2 text-muted-foreground">
+              Beroepsgerelateerde en andere handige links.
+            </p>
+          </div>
 
           <div className="mt-10 flex flex-col gap-12">
             {linksCategorieen.map((categorie) => (

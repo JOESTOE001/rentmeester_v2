@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const referentiesAchtergrond = "/images/achtergronden/review.png"
 
@@ -83,31 +84,49 @@ export function TestimonialsSection() {
           }`}
         >
           <div className="overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-sm lg:p-12">
-            <Quote className="h-10 w-10 text-accent/30" />
-            <div className="mt-6">
-              <h3 className="font-serif text-lg font-semibold text-foreground">
-                {testimonials[active].title}
-              </h3>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground lg:text-lg">
-                {testimonials[active].text}
-              </p>
-              <div className="mt-8 flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent">
-                  <span className="font-serif text-lg font-bold text-accent-foreground">
-                    {testimonials[active].name.charAt(0)}
-                  </span>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">
-                    {testimonials[active].name}
-                  </p>
-                  {testimonials[active].company && (
-                    <p className="text-xs text-muted-foreground">
-                      {testimonials[active].company}
-                    </p>
+            {/* Stacked grid: row height follows the tallest slide so controls/background do not jump */}
+            <div className="grid grid-cols-1">
+              {testimonials.map((t, i) => (
+                <article
+                  key={i}
+                  className={cn(
+                    "col-start-1 row-start-1 min-w-0",
+                    i === active
+                      ? "relative z-10 visible"
+                      : "invisible pointer-events-none"
                   )}
-                </div>
-              </div>
+                  aria-hidden={i !== active}
+                >
+                  <Quote className="h-10 w-10 text-accent/30" />
+                  <div className="mt-6">
+                    <h3 className="font-serif text-lg font-semibold text-foreground">
+                      {t.title}
+                    </h3>
+                    <p className="mt-4 text-base leading-relaxed text-muted-foreground lg:text-lg">
+                      {t.text}
+                    </p>
+                    <div className="mt-8 flex items-center gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent">
+                        <span className="font-serif text-lg font-bold text-accent-foreground">
+                          {t.name.charAt(0)}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-foreground">
+                          {t.name}
+                        </p>
+                        <div className="min-h-[1.25rem]">
+                          {t.company && (
+                            <p className="text-xs text-muted-foreground">
+                              {t.company}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
 
