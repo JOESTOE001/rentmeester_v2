@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params
   const service = getServiceBySlug(slug)
-  if (!service) return { title: "Dienst niet gevonden" }
+  if (!service) return { title: "Dienst niet gevonden." }
   return {
     title: `${service.title} | Bakker Rentmeesters`,
     description: service.desc,
