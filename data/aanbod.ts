@@ -9,6 +9,8 @@ export interface AanbodIndexItem {
 
 /** Volgorde van aanbod op de overzichtspagina. Voeg hier alleen (id, slug, status) toe. */
 export const aanbodIndex: AanbodIndexItem[] = [
+  { id: "64", slug: "bolgerijsekade-vianen", status: "te-koop" },
+  { id: "63", slug: "hei-kessel", status: "te-koop" },
   { id: "1", slug: "vrijgelegen-woonboerderij-met-royale-bijgebouwen-in-bantega", status: "te-koop" },
   { id: "2", slug: "landelijk-wonen-in-de-groeve-nabij-het-zuidlaardermeer", status: "te-koop" },
   { id: "3", slug: "ruime-goed-onderhouden-jaren-30-woning-in-kollumersweach", status: "te-koop" },

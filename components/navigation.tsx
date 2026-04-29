@@ -112,11 +112,7 @@ export function Navigation() {
         <div className="flex items-center gap-4">
           <Link
             href="/#contact"
-            className={`hidden rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-300 lg:block ${
-              solidNavBar
-                ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                : "bg-card text-foreground hover:bg-card/90"
-            }`}
+            className="hidden rounded-lg bg-[#5f8f53] px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[#527d48] lg:block"
           >
             Neem contact op
           </Link>
@@ -164,7 +160,7 @@ export function Navigation() {
             <Link
               href="/#contact"
               onClick={() => setIsMobileOpen(false)}
-              className="mt-4 block rounded-lg bg-primary px-5 py-3 text-center text-sm font-medium text-primary-foreground"
+              className="mt-4 block rounded-lg bg-[#5f8f53] px-5 py-3 text-center text-sm font-medium text-white hover:bg-[#527d48]"
             >
               Neem contact op
             </Link>

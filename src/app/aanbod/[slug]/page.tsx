@@ -5,6 +5,10 @@ import { notFound } from "next/navigation"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { MarkdownBody } from "@/components/markdown-body"
+import {
+  AanbodImageCarousel,
+  type AanbodGalleryImage,
+} from "@/components/aanbod-image-carousel"
 import { getAanbodBySlug, type AanbodStatus } from "@/lib/aanbod"
 import { aanbodIndex } from "@/data/aanbod"
 import { ArrowLeft } from "lucide-react"
@@ -18,6 +22,38 @@ const statusLabelsMap: Record<AanbodStatus, string> = {
   "te-koop": "",
   verkocht: "verkocht",
   "verkocht-onder-voorbehoud": "verkocht onder voorbehoud",
+}
+
+function splitBodyAndGallery(body: string): {
+  body: string
+  images: AanbodGalleryImage[]
+} {
+  const galleryHeading = /^##\s+Afbeeldingen\s*$/im
+  const headingMatch = galleryHeading.exec(body)
+
+  if (!headingMatch) return { body, images: [] }
+
+  const beforeGallery = body.slice(0, headingMatch.index).trim()
+  const afterHeading = body.slice(headingMatch.index + headingMatch[0].length)
+  const nextHeadingMatch = /^##\s+/m.exec(afterHeading)
+  const gallerySection = nextHeadingMatch
+    ? afterHeading.slice(0, nextHeadingMatch.index)
+    : afterHeading
+  const afterGallery = nextHeadingMatch
+    ? afterHeading.slice(nextHeadingMatch.index).trim()
+    : ""
+
+  const images = Array.from(
+    gallerySection.matchAll(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g)
+  ).map((match) => ({
+    alt: match[1],
+    src: match[2],
+  }))
+
+  return {
+    body: [beforeGallery, afterGallery].filter(Boolean).join("\n\n"),
+    images,
+  }
 }
 
 export async function generateMetadata({
@@ -46,6 +82,7 @@ export default async function AanbodDetailPage({
   const statusLabel = statusLabelsMap[item.status]
   const hasImage = item.image
   const PLACEHOLDER_IMAGE = "/placeholder.svg"
+  const { body, images } = splitBodyAndGallery(item.body)
 
   return (
     <main className="min-h-screen bg-transparent">
@@ -54,7 +91,7 @@ export default async function AanbodDetailPage({
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <Link
             href="/aanbod"
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground mb-8"
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/70 bg-card/95 px-4 py-2 text-sm font-semibold text-foreground shadow-md backdrop-blur-sm transition-colors hover:bg-card"
           >
             <ArrowLeft className="h-4 w-4" />
             Terug naar aanbod
@@ -100,11 +137,13 @@ export default async function AanbodDetailPage({
               )}
 
               {/* Uitgebreide tekst (body: markdown + HTML zoals <strong>) */}
-              {item.body && (
+              {body && (
                 <div className="mt-8">
-                  <MarkdownBody content={item.body} className="leading-relaxed" />
+                  <MarkdownBody content={body} className="leading-relaxed" />
                 </div>
               )}
+
+              <AanbodImageCarousel images={images} />
 
               <p className="mt-8 text-sm text-muted-foreground">
                 Voor meer informatie over dit aanbod, neem gerust contact met ons
@@ -112,7 +151,7 @@ export default async function AanbodDetailPage({
               </p>
               <Link
                 href="/#contact"
-                className="mt-6 inline-flex rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground hover:bg-accent/90"
+                className="mt-6 inline-flex rounded-lg bg-[#5f8f53] px-6 py-3 text-sm font-semibold text-white hover:bg-[#527d48]"
               >
                 Neem contact op
               </Link>

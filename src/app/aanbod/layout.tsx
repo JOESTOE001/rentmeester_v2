@@ -15,7 +15,7 @@ export default function AanbodLayout({
           className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-background/15" aria-hidden />
+        <div className="absolute inset-0 bg-hero-overlay/55" aria-hidden />
       </div>
       <div className="relative z-10">{children}</div>
     </div>

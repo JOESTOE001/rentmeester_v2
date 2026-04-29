@@ -27,6 +27,7 @@ function AanbodCard({ item }: { item: AanbodItem }) {
       linkLabel="Lees meer..."
       statusLabel={statusLabel || undefined}
       extra={item.extra}
+      fullCardLink
     />
   )
 }
