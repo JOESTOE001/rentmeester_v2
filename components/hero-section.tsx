@@ -12,7 +12,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative flex min-h-[100svh] items-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -27,15 +27,15 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-32 lg:px-8">
-        <div className="max-w-3xl">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-28 sm:px-6 sm:py-32 lg:px-8">
+        <div className="min-w-0 max-w-[42rem] lg:max-w-3xl">
           {/* Overline */}
           <div
-            className={`mb-8 transition-all duration-1000 delay-200 ${
+            className={`mb-6 transition-all duration-1000 delay-200 sm:mb-8 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-card/20 bg-card/10 px-4 py-1.5 text-xs font-medium tracking-widest uppercase text-card/80 backdrop-blur-sm">
+            <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-card/20 bg-card/10 px-4 py-1.5 text-[0.7rem] font-medium tracking-widest uppercase text-card/80 backdrop-blur-sm sm:text-xs">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               Sinds 1990 actief
             </span>
@@ -43,20 +43,22 @@ export function HeroSection() {
 
           {/* Heading */}
           <h1
-            className={`font-serif text-4xl font-bold leading-tight text-card sm:text-5xl lg:text-7xl transition-all duration-1000 delay-400 ${
+            className={`max-w-full font-serif text-[clamp(2rem,9.2vw,4.5rem)] font-bold leading-[1.08] text-card transition-all duration-1000 delay-400 sm:text-5xl lg:text-7xl ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
-            <span className="text-balance block">
-              Uw specialist in{" "}
-              <span className="italic text-[oklch(0.94_0.1_78)]">landelijk</span>{" "}
-              vastgoed
+            <span className="block text-balance">
+              <span className="block sm:inline">Uw specialist in</span>{" "}
+              <span className="block italic text-[oklch(0.94_0.1_78)] sm:inline">
+                landelijk
+              </span>{" "}
+              <span className="block sm:inline">vastgoed</span>
             </span>
           </h1>
 
           {/* Subtitle */}
           <p
-            className={`mt-6 max-w-xl text-lg leading-relaxed text-card/80 lg:text-xl transition-all duration-1000 delay-600 ${
+            className={`mt-5 max-w-[34rem] text-base leading-7 text-card/85 transition-all duration-1000 delay-600 sm:mt-6 sm:text-lg lg:text-xl lg:leading-relaxed ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
@@ -67,19 +69,19 @@ export function HeroSection() {
 
           {/* CTA Buttons */}
           <div
-            className={`mt-10 flex flex-col gap-4 sm:flex-row transition-all duration-1000 delay-700 ${
+            className={`mt-8 flex flex-col gap-3 transition-all duration-1000 delay-700 sm:mt-10 sm:flex-row sm:gap-4 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
             <a
               href="#diensten"
-              className="inline-flex items-center justify-center rounded-lg bg-accent px-8 py-3.5 text-sm font-semibold text-accent-foreground transition-all hover:bg-accent/90 hover:shadow-lg"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-accent px-6 py-3.5 text-sm font-semibold text-accent-foreground transition-all hover:bg-accent/90 hover:shadow-lg sm:w-auto sm:px-8"
             >
               Onze diensten
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center rounded-lg border border-card/30 bg-card/10 px-8 py-3.5 text-sm font-semibold text-card backdrop-blur-sm transition-all hover:bg-card/20"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-card/30 bg-card/10 px-6 py-3.5 text-sm font-semibold text-card backdrop-blur-sm transition-all hover:bg-card/20 sm:w-auto sm:px-8"
             >
               Neem contact op
             </a>
@@ -87,7 +89,7 @@ export function HeroSection() {
 
           {/* Stats */}
           <div
-            className={`mt-16 flex gap-12 transition-all duration-1000 delay-1000 ${
+            className={`mt-10 grid min-w-0 grid-cols-3 gap-3 transition-all duration-1000 delay-1000 sm:mt-16 sm:flex sm:gap-12 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
@@ -96,11 +98,11 @@ export function HeroSection() {
               { number: "500+", label: "Projecten" },
               { number: "100%", label: "Betrokkenheid" },
             ].map((stat) => (
-              <div key={stat.label} className="flex flex-col">
-                <span className="font-serif text-3xl font-bold text-card lg:text-4xl">
+              <div key={stat.label} className="flex min-w-0 flex-col">
+                <span className="font-serif text-2xl font-bold text-card sm:text-3xl lg:text-4xl">
                   {stat.number}
                 </span>
-                <span className="mt-1 text-xs tracking-wider uppercase text-card/60">
+                <span className="mt-1 min-w-0 break-words text-[0.55rem] uppercase leading-tight tracking-[0.08em] text-card/70 sm:text-xs sm:tracking-wider">
                   {stat.label}
                 </span>
               </div>
@@ -110,7 +112,7 @@ export function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
+      <div className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 sm:block">
         <a
           href="#over-ons"
           className="flex flex-col items-center gap-2 text-card/60 transition-colors hover:text-card"
