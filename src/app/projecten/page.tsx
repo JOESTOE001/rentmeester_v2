@@ -2,13 +2,11 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { ContentBlockImageLeft } from "@/components/content-block-image-left"
 import {
   getProjectenPage,
   PROJECTEN_TOTAL_PAGES,
   type ProjectItem,
 } from "@/data/projecten"
-import projectenImages from "@/data/projecten-images.json"
 
 export const metadata: Metadata = {
   title: "Projecten | Bakker Rentmeesters",
@@ -16,27 +14,22 @@ export const metadata: Metadata = {
     "Overzicht van projecten waarbij Bakker Rentmeesters betrokken is: grondverwerving, dijkversterking, warmtenetten, zonneparken en meer.",
 }
 
-const PLACEHOLDER_IMAGE = "/placeholder.svg"
-
-/** Afbeelding voor een project: uit projecten-images.json (scrape) of placeholder. */
-function getProjectImage(project: ProjectItem): string {
-  const path =
-    project.image ??
-    (projectenImages as Record<string, string>)[project.slug] ??
-    PLACEHOLDER_IMAGE
-  return path
-}
-
 function ProjectCard({ project }: { project: ProjectItem }) {
   return (
-    <ContentBlockImageLeft
-      imageSrc={getProjectImage(project)}
-      imageAlt={project.title}
-      title={project.title}
-      excerpt={project.excerpt}
-      linkHref="/#contact"
-      linkLabel="Meer informatie"
-    />
+    <Link
+      href={`/projecten/${project.slug}`}
+      className="group block rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 lg:p-8"
+    >
+      <h2 className="font-sans text-lg font-bold uppercase tracking-wide text-accent lg:text-xl">
+        {project.title}
+      </h2>
+      <p className="mt-3 text-base leading-relaxed text-foreground">
+        {project.excerpt}
+      </p>
+      <span className="mt-4 inline-flex items-center text-sm font-medium text-primary underline decoration-dotted underline-offset-2 group-hover:text-accent">
+        Meer informatie
+      </span>
+    </Link>
   )
 }
 

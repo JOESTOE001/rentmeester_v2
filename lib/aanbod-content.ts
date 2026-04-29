@@ -11,6 +11,8 @@ export interface AanbodContent {
   status: AanbodStatus
   image?: string
   extra?: string
+  brokerName?: string
+  brokerUrl?: string
   /** Ruwe body (markdown + HTML), te renderen met react-markdown + rehype-raw */
   body: string
 }
@@ -48,6 +50,8 @@ export async function getAanbodContent(
       status: parseStatus(data.status),
       image: typeof data.image === "string" ? data.image : undefined,
       extra: typeof data.extra === "string" ? data.extra : undefined,
+      brokerName: typeof data.brokerName === "string" ? data.brokerName : undefined,
+      brokerUrl: typeof data.brokerUrl === "string" ? data.brokerUrl : undefined,
       body: content.trim(),
     }
   } catch {

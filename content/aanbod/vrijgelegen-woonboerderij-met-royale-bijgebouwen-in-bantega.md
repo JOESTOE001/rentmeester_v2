@@ -3,6 +3,8 @@ title: "Vrijgelegen woonboerderij met royale bijgebouwen in Bantega"
 excerpt: "Deze boerderij staat op een prachtige, landelijke locatie aan het einde van een doodlopende weg."
 status: te-koop
 image: /images/aanbod/vrijgelegen-woonboerderij-bantega.jpg
+brokerName: "MooiWonen Makelaars"
+brokerUrl: "https://mooiwonenmakelaars.nl/woningaanbod/koop/bantega/grietenijdijk-8-bantega"
 ---
 
 Deze boerderij staat op een prachtige, landelijke locatie aan het einde van een doodlopende weg.
@@ -21,6 +23,6 @@ Perceeloppervlak9.430 m²
 
 Inhoud3.443 m³
 
-Klik hier voor meer informatie
+[Klik hier voor meer informatie](https://mooiwonenmakelaars.nl/woningaanbod/koop/bantega/grietenijdijk-8-bantega)
 
 Aanbieder MooiWonen Makelaars

@@ -61,7 +61,7 @@ export function ServicesSection() {
 
           <div className="min-w-0">
             {/* Advies Services Grid */}
-            <div>
+            <div id="diensten-advies" className="scroll-mt-28">
               <h3
                 className={`mb-8 font-serif text-xl font-semibold text-foreground transition-all duration-700 delay-200 ${
                   isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
@@ -96,7 +96,7 @@ export function ServicesSection() {
             {/* Verkoop + Special Services */}
             <div className="mt-16 grid gap-16 lg:grid-cols-2">
               {/* Aan- en Verkoop */}
-              <div>
+              <div id="diensten-aan-en-verkoop" className="scroll-mt-28">
                 <h3
                   className={`mb-8 font-serif text-xl font-semibold text-foreground transition-all duration-700 delay-200 ${
                     isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"

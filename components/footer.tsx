@@ -121,18 +121,18 @@ export function Footer() {
             <h4 className="text-sm font-semibold text-primary-foreground">Diensten</h4>
             <ul className="mt-4 flex flex-col gap-2">
               {[
-                "Advies",
-                "Aan- en verkoop",
-                "Taxaties",
-                "Onteigening",
-                "Grondverwerving",
+                { label: "Advies", href: "/#diensten-advies" },
+                { label: "Aan- en verkoop", href: "/#diensten-aan-en-verkoop" },
+                { label: "Taxaties", href: "/diensten/taxaties" },
+                { label: "Onteigening", href: "/diensten/onteigening" },
+                { label: "Grondverwerving", href: "/diensten/grondverwerving" },
               ].map((item) => (
-                <li key={item}>
+                <li key={item.label}>
                   <a
-                    href="/#diensten"
+                    href={item.href}
                     className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
                   >
-                    {item}
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -166,8 +166,22 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-primary-foreground">Contact</h4>
             <ul className="mt-4 flex flex-col gap-2">
-              <li className="text-sm text-primary-foreground/60">info@rentmeester.nl</li>
-              <li className="text-sm text-primary-foreground/60">Nederland</li>
+              <li>
+                <a
+                  href="mailto:info@rentmeester.nl"
+                  className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
+                >
+                  info@rentmeester.nl
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:0183402088"
+                  className="text-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground"
+                >
+                  0183-402088
+                </a>
+              </li>
             </ul>
             <p className="mt-6 text-sm font-semibold text-primary-foreground">Social media</p>
             <ul className="mt-3 flex flex-wrap gap-2" aria-label="Social media">

@@ -23,7 +23,7 @@ function NieuwsCard({ item }: { item: NieuwsItem }) {
       </h2>
       <p className="mt-2 text-muted-foreground">{item.excerpt}</p>
       <Link
-        href="/#contact"
+        href={`/nieuws/${item.slug}`}
         className="mt-4 inline-block text-sm font-medium text-primary hover:underline"
       >
         Lees meer …

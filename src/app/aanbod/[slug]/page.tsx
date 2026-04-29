@@ -135,6 +135,16 @@ export default async function AanbodDetailPage({
                   {item.extra}
                 </p>
               )}
+              {item.brokerUrl && (
+                <a
+                  href={item.brokerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex rounded-lg border border-accent/30 px-5 py-2.5 text-sm font-semibold text-accent transition-colors hover:bg-accent/10"
+                >
+                  Bekijk dit object bij {item.brokerName ?? "de makelaar"}
+                </a>
+              )}
 
               {/* Uitgebreide tekst (body: markdown + HTML zoals <strong>) */}
               {body && (

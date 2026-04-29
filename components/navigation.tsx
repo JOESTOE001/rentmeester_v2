@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, type MouseEvent } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
@@ -12,9 +12,9 @@ const navLinks = [
     label: "Diensten",
     href: "/#diensten",
     children: [
-      { label: "Advies", href: "/#diensten" },
-      { label: "Aan- en verkoop", href: "/#diensten" },
-      { label: "Taxaties", href: "/#diensten" },
+      { label: "Advies", href: "/#diensten-advies" },
+      { label: "Aan- en verkoop", href: "/#diensten-aan-en-verkoop" },
+      { label: "Taxaties", href: "/diensten/taxaties" },
     ],
   },
   { label: "Aanbod", href: "/aanbod" },
@@ -44,6 +44,25 @@ export function Navigation() {
     window.addEventListener("scroll", onScroll)
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  const handleMobileLinkClick = (
+    href: string,
+    event: MouseEvent<HTMLAnchorElement>
+  ) => {
+    setIsMobileOpen(false)
+
+    if (!href.startsWith("/#") || pathname !== "/") return
+
+    event.preventDefault()
+
+    const target = document.getElementById(href.slice(2))
+    if (!target) return
+
+    window.history.pushState(null, "", href)
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" })
+    })
+  }
 
   return (
     <header
@@ -136,7 +155,7 @@ export function Navigation() {
               <div key={link.label}>
                 <Link
                   href={link.href}
-                  onClick={() => setIsMobileOpen(false)}
+                  onClick={(event) => handleMobileLinkClick(link.href, event)}
                   className="block py-3 text-base font-medium text-foreground"
                 >
                   {link.label}
@@ -147,7 +166,7 @@ export function Navigation() {
                       <Link
                         key={child.label}
                         href={child.href}
-                        onClick={() => setIsMobileOpen(false)}
+                        onClick={(event) => handleMobileLinkClick(child.href, event)}
                         className="block py-2 text-sm text-muted-foreground"
                       >
                         {child.label}
@@ -159,7 +178,7 @@ export function Navigation() {
             ))}
             <Link
               href="/#contact"
-              onClick={() => setIsMobileOpen(false)}
+              onClick={(event) => handleMobileLinkClick("/#contact", event)}
               className="mt-4 block rounded-lg bg-[#5f8f53] px-5 py-3 text-center text-sm font-medium text-white hover:bg-[#527d48]"
             >
               Neem contact op

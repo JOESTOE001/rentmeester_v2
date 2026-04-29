@@ -5,6 +5,7 @@ export interface NieuwsItem {
   date: string
   excerpt: string
   slug: string
+  image?: string
 }
 
 const ITEMS_PER_PAGE = 10
@@ -137,4 +138,8 @@ export const NIEUWS_TOTAL_PAGES = Math.ceil(nieuwsIndex.length / ITEMS_PER_PAGE)
 export function getNieuwsPage(page: number): NieuwsItem[] {
   const start = (page - 1) * ITEMS_PER_PAGE
   return nieuwsIndex.slice(start, start + ITEMS_PER_PAGE)
+}
+
+export function getNieuwsBySlug(slug: string): NieuwsItem | undefined {
+  return nieuwsIndex.find((item) => item.slug === slug)
 }
